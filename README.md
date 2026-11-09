@@ -14,7 +14,17 @@ DSH（DeepSeek Harness）插件：把聊天回复的**形态**收敛住。
 
 ## 安装
 
-本包不在 npm 上，从源码装。三种方式任选。
+本包不在 npm 上，从源码装。
+
+### 一条命令（不依赖 pnpm，最省事）
+
+```bash
+wget -qO- https://raw.githubusercontent.com/chen969196657/dsh-prompt-shape/main/install.sh | sh -s web
+```
+
+`sh -s <profile>` 里的 `web` 换成你的 profile 名。脚本会下载、解包、建符号链接、登记 `bundles`，全程不需要 pnpm 联网解析依赖。
+
+下面四种方式按需选。
 
 ### 方式 A：从 GitHub 直接装（推荐）
 
