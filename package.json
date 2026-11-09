@@ -1,0 +1,54 @@
+{
+  "name": "dsh-prompt-shape",
+  "version": "1.5.0",
+  "description": "DSH 提示词与输出形态整理：分级起手符、头尾锚点、请求体整形、按需片段加载、原始流镜像。零宿主补丁。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "dsh-prompt-shape": "bin/armor.mjs",
+    "dsh-shape-doctor": "bin/fix-hidden.mjs"
+  },
+  "files": [
+    "lib",
+    "bin",
+    "tools",
+    "skill",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.15"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "doctor": "node bin/fix-hidden.mjs --verify"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "prompt",
+    "output-shape",
+    "prefill"
+  ],
+  "license": "MIT"
+}
