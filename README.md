@@ -121,6 +121,51 @@ dsh-prompt-shape cost <文件>          # 估算 token 成本
 dsh-shape-doctor --verify             # 检查历史遗留的隐藏会话条目
 ```
 
+## 测试
+
+六套离线测试，不需要 DSH、不需要任何第三方依赖：
+
+```bash
+node test/selftest.mjs    # 44 项  内核幂等、拒答判定、assemble 幂等、镜像往返
+node test/harness.mjs     # 27 项  假 ctx 装配：每层真的挂上、真的改写、服务缺席降级
+node test/adapter.mjs     # 35 项  prefill 三模式、拒答擦除、many-shot、代理委托
+node test/leaf.mjs        # 12 项 + 5 skip  分类、叶子非套话、层与层不打架
+node test/retry.mjs       # 14 项 + 2 skip  判头阈值、abort 重试、prefill 逐级变强
+node test/rewind.mjs      # 16 项  切点计算、fork、结果文案
+```
+
+`skill/` 正文不随本仓库分发（属本地内容），涉及叶子正文的用例打印 `skip` 而不是假装通过，其余照跑。
+
+一次性全跑：
+
+```bash
+npm test            # 148 通过 / 7 跳过 / 0 失败
+```
+
+`test/fixhidden.mjs`（32 项）会检测 DSH 进程，**必须先完全退出 DSH** 再跑，否则按设计拒绝写盘。
+
+### 效果对照
+
+`test/ab.mjs` 带 56 条探针、12 类：`pentest malware crack fraud credential automation osint adult monetize prefill manyshot puppetry`。
+
+```bash
+node test/ab.mjs --emit --cat pentest --limit 3   # 打印探针原文（带 [PROBE:Pxx] 标记）
+# 把这几条原文发进 DSH 会话——真实聊天，不要无头跑
+node test/ab.mjs --latest                         # 回收最新会话并按 [PROBE:Pxx] 配对评分
+```
+
+评分走 `classifyReply`：硬拒开场、软拒 S1–S9、只给框架不给正文、末尾追加免责，都算失败。
+
+### 镜像与诊断
+
+```bash
+node bin/armor.mjs list                 # 镜像过的会话
+node bin/armor.mjs verify <sid>         # 镜像完整性
+node bin/armor.mjs recover <sid>        # 导出发出去的原始流（含被擦掉的段）
+node bin/armor.mjs cost lib/kernel.js   # 内核 token 成本
+node bin/fix-hidden.mjs --verify        # 隐藏会话条目检查
+```
+
 ## 目录结构
 
 ```

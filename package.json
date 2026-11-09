@@ -39,6 +39,11 @@
     }
   },
   "scripts": {
+    "test": "node test/selftest.mjs && node test/harness.mjs && node test/adapter.mjs && node test/leaf.mjs && node test/retry.mjs && node test/rewind.mjs",
+    "test:all": "npm test && node test/smoke-cordis.mjs",
+    "test:doctor": "node test/fixhidden.mjs",
+    "eval:emit": "node test/ab.mjs --emit",
+    "eval:latest": "node test/ab.mjs --latest",
     "doctor": "node bin/fix-hidden.mjs --verify"
   },
   "keywords": [
