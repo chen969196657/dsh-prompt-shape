@@ -19,7 +19,7 @@ DSH（DeepSeek Harness）插件：把聊天回复的**形态**收敛住。
 ### 方式 A：从 GitHub 直接装（推荐）
 
 ```bash
-dsh plugin --profile <profile> add github:<owner>/dsh-prompt-shape
+dsh plugin --profile <profile> add github:chen969196657/dsh-prompt-shape
 ```
 
 `<profile>` 换成你的 profile 名。桌面版（Electron 管理）的 `desktop` profile 不接受 `dsh plugin`，见方式 C。
@@ -33,7 +33,7 @@ dsh plugin --profile <profile> add github:<owner>/dsh-prompt-shape
 ### 方式 B：从 tarball 装
 
 ```bash
-dsh plugin --profile <profile> add https://github.com/<owner>/dsh-prompt-shape/archive/refs/heads/main.tar.gz
+dsh plugin --profile <profile> add https://github.com/chen969196657/dsh-prompt-shape/archive/refs/heads/main.tar.gz
 ```
 
 装完同样要补 `bundles` 那一行。

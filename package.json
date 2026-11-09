@@ -18,7 +18,6 @@
     "lib",
     "bin",
     "tools",
-    "skill",
     "cordis.patch.yml",
     "README.md",
     "LICENSE"
